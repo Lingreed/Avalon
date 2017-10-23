@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# IntelliJ project files
+.idea
+*.iml
+
+/web/.mvn/
+/web/mvnw
+/web/mvnw.cmd
