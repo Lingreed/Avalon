@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<xml>
+    <!-- 项目名称 -->
+    <property name="PROJECT" value="avalon"/>
+    <contextName>${PROJECT}</contextName>
+
+    <!--日志目录-->
+    <property name="LOG_HOME" value="${catalina.home}/logs/${PROJECT}"/>
+
+    <!-- 日志文件最大历史 -->
+    <property name="maxHistory" value="30"/>
+
+    <!-- 日志文件体积上限 -->
+    <property name="maxFileSize" value="10MB"/>
+
+    <!-- 日志文件字符集 -->
+    <property name="charset" value="UTF-8"/>
+
+    <!--日期格式-->
+    <timestamp key="bySecond" datePattern="yyyyMMdd" timeReference="contextBirth"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+	        <!-- %d时间  %thread线程名  %level日志级别  %logger logger名称  %method方法名称  %msg 入参消息 -->
+            <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS}","app_name":"${APP_NAME:-${HOSTNAME}}","thread":"%thread","level":"%level","logger":"%logger.%method","msg":"%msg"}%n</pattern>
+        	<charset>${charset}</charset>
+        </encoder>
+    </appender>
+	
+    <!-- 滚动输出ERROR级别日志 -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY </onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/error.%d{yyyy-MM-dd}_%i.log</FileNamePattern>
+            <MaxHistory>${maxHistory}</MaxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <!-- %d时间  %thread线程名  %level日志级别  %logger logger名称  %method方法名称  %msg 入参消息 -->
+            <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS}","app_name":"${APP_NAME:-${HOSTNAME}}","thread":"%thread","level":"%level","logger":"%logger.%method","msg":"%msg"}%n</pattern>
+            <charset>${charset}</charset>
+        </encoder>
+    </appender>
+	
+    <!-- 滚动输出WARN级别日志 -->
+    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY </onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/warn.%d{yyyy-MM-dd}_%i.log</FileNamePattern>
+            <MaxHistory>${maxHistory}</MaxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <!-- %d时间  %thread线程名  %level日志级别  %logger logger名称  %method方法名称  %msg 入参消息 -->
+            <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS}","app_name":"${APP_NAME:-${HOSTNAME}}","thread":"%thread","level":"%level","logger":"%logger.%method","msg":"%msg"}%n</pattern>
+            <charset>${charset}</charset>
+        </encoder>
+    </appender>
+
+   	<!-- 滚动输出INFO级别日志 -->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY </onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/info.%d{yyyy-MM-dd}_%i.log</FileNamePattern>
+            <MaxHistory>${maxHistory}</MaxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <!-- %d时间  %thread线程名  %level日志级别  %logger logger名称  %method方法名称  %msg 入参消息 -->
+            <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS}","app_name":"${APP_NAME:-${HOSTNAME}}","thread":"%thread","level":"%level","logger":"%logger.%method","msg":"%msg"}%n</pattern>
+            <charset>${charset}</charset>
+        </encoder>
+    </appender>
+
+   <!-- 滚动输出DEBUG级别日志 -->
+   <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <filter class="ch.qos.logback.classic.filter.LevelFilter">
+           <level>DEBUG</level>
+           <onMatch>ACCEPT</onMatch>
+           <onMismatch>DENY </onMismatch>
+       </filter>
+       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+           <FileNamePattern>${LOG_HOME}/debug.%d{yyyy-MM-dd}_%i.log</FileNamePattern>
+           <MaxHistory>${maxHistory}</MaxHistory>
+           <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+			<maxFileSize>${maxFileSize}</maxFileSize>
+           </timeBasedFileNamingAndTriggeringPolicy>
+       </rollingPolicy>
+       <encoder>
+           <!-- %d时间  %thread线程名  %level日志级别  %logger logger名称  %method方法名称  %msg 入参消息 -->
+           <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS}","app_name":"${APP_NAME:-${HOSTNAME}}","thread":"%thread","level":"%level","logger":"%logger.%method","msg":"%msg"}%n</pattern>
+           <charset>${charset}</charset>
+       </encoder>
+   </appender>
+	
+    <!-- 滚动输出TRACE级别日志 -->
+    <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY </onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/trace.%d{yyyy-MM-dd}_%i.log</FileNamePattern>
+            <MaxHistory>${maxHistory}</MaxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <!-- %d时间  %thread线程名  %level日志级别  %logger logger名称  %method方法名称  %msg 入参消息 -->
+            <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS}","app_name":"${APP_NAME:-${HOSTNAME}}","thread":"%thread","level":"%level","logger":"%logger.%method","msg":"%msg"}%n</pattern>
+            <charset>${charset}</charset>
+        </encoder>
+    </appender>
+
+    <!-- name指的是logger, level是只展示什么行为信息级别以上的，类似阈值过滤器. additivity表示是否抛出事件,如果有一个logger的name是log，如果这个属性是true，另一个logger就会在这个logger处理完后接着继续处理 -->
+    <logger name="java.sql" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DEBUG" />
+    </logger>
+    <logger name="com.ibatis" level="ERROR" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DEBUG" />
+    </logger>
+    <logger name="org.hibernate" level="ERROR" additivity="false"/>
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR" />
+    </logger>
+    <logger name="com.alibaba" level="ERROR" additivity="false"/>
+    <logger name="org.springframework.web" level="INFO" additivity="false"/>
+    <logger name="org.apache.catalina" level="DEBUG" additivity="false"/>
+    <logger name="javax.management" level="DEBUG" additivity="false"/>
+    <logger name="org.apache.tomcat" level="ERROR" additivity="false"/>
+    <logger name="org.mybatis.spring" level="ERROR" additivity="false"/>
+    <logger name="org.apache.ibatis" level="ERROR" additivity="false"/>
+    <logger name="org.apache.coyote" level="INFO" additivity="false"/>
+    <logger name="org.apache.commons.beanutils" level="INFO" additivity="false"/>
+    <logger name="org.mongodb.driver.cluster.debug" level="ERROR" additivity="false"/>
+
+    <logger name="com.bryan" level="DEBUG" additivity="false">
+        <!-- 控制台输出 -->
+        <appender-ref ref="STDOUT" />
+        <!-- 文件输出 -->
+        <appender-ref ref="ERROR" />
+        <appender-ref ref="INFO" />
+        <appender-ref ref="WARN" />
+        <appender-ref ref="DEBUG" />
+        <appender-ref ref="TRACE" />
+    </logger>
+</xml>
