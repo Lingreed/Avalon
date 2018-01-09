@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:db.properties")
 @ConfigurationProperties(prefix="jdbc")
-public class JdbcParams {
+class JdbcParams {
 
     private String driver;
 
