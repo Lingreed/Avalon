@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <!-- 项目名称 -->
-    <property name="PROJECT" value="avalon-web"/>
+    <property name="PROJECT" value="avalon-manage"/>
     <contextName>${PROJECT}</contextName>
 
     <!--日志目录-->

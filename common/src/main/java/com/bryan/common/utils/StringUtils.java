@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
  * @version 1.0
  * @date 2017/10/23
  */
+@Deprecated
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     private static final char SEPARATOR = '_';

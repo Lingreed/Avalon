@@ -19,6 +19,7 @@
     <modules>
         <module>common</module>
         <module>web</module>
+        <module>manage</module>
     </modules>
 
     <properties>
