@@ -20,6 +20,7 @@
         <module>common</module>
         <module>web</module>
         <module>manage</module>
+        <module>dao</module>
     </modules>
 
     <properties>
