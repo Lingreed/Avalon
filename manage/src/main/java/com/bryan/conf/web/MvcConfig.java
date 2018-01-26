@@ -78,16 +78,16 @@ public class MvcConfig extends WebMvcConfigurationSupport {
      * @Description: 权限过滤器
      * @return
      */
-//    @Bean
-//    public FilterRegistrationBean sessionFilterRegistration() {
-//        FilterRegistrationBean registration = new FilterRegistrationBean();
-//        registration.setFilter(new SessionFilter());
-//        registration.addUrlPatterns("/*");
-//        registration.setName("sessionFilter");
-//        registration.setOrder(100);
-//
-//        return registration;
-//    }
+    @Bean
+    public FilterRegistrationBean sessionFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new SessionFilter());
+        registration.addUrlPatterns("/*");
+        registration.setName("sessionFilter");
+        registration.setOrder(100);
+
+        return registration;
+    }
     
     @Bean
     public CommonsMultipartResolver multipartResolver() {

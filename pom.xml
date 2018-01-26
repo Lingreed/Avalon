@@ -21,6 +21,7 @@
         <module>web</module>
         <module>manage</module>
         <module>dao</module>
+        <module>service</module>
     </modules>
 
     <properties>
