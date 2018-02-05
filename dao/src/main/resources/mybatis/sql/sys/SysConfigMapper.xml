@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.sys.mapper.SysConfigMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysConfig">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="cfg_key" property="cfgKey" jdbcType="VARCHAR" />
+		<result column="cfg_value" property="cfgValue" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="cache" property="cache" jdbcType="VARCHAR" />
+		<result column="show_tag" property="showTag" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        category,
+        cfg_key,
+        cfg_value,
+        state,
+        cache,
+        show_tag,
+        remark,
+        ctime    </sql>
+    
+	  
+</mapper>

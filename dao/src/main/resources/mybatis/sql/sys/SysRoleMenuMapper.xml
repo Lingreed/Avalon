@@ -2,55 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bryan.sys.mapper.SysRoleMenuMapper">
-	<resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysRoleMenu">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="sys_role_id" property="sysRoleId" jdbcType="INTEGER" />
-		<result column="sys_menu_id" property="sysMenuId" jdbcType="INTEGER" />
-		<result column="select_state" property="selectState" jdbcType="VARCHAR" />
-		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
-	</resultMap>
-	
-	<sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysRoleMenu">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="sys_role_id" property="sysRoleId" jdbcType="INTEGER"/>
+        <result column="sys_menu_id" property="sysMenuId" jdbcType="INTEGER"/>
+        <result column="select_state" property="selectState" jdbcType="VARCHAR"/>
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
         id,
         sys_role_id,
         sys_menu_id,
         select_state,
         ctime    
     </sql>
-    
+
     <!-- 查询角色对应的菜单-->
-	<select id="findRoleMenus" resultType="com.bryan.sys.domain.SysMenu" parameterType="map">
-		SELECT
-		  B.id ,
-		  B.pid ,
-		  B.menu_code AS menuCode,
-		  B.menu_name AS menuName,
-		  B.icon  ,
-		  B.discribtion ,
-		  B.menu_sort AS menuSort,
-		  B.menu_type AS menuType,
-		  B.href ,
-		  B.permission_value AS permissionValue,
-		  B.remark ,
-		  B.ctime ,
-		  B.mtime
-		FROM
-			sys_role_menu A
-		LEFT JOIN sys_menu B ON A.sys_menu_id=B.id
-		<where>
-			<if test="sysRoleId!=null">
-				A.sys_role_id = #{sysRoleId,jdbcType=INTEGER}
-			</if>
-		    <if test="menuType!=null">
-		    	and B.menu_type=#{menuType,jdbcType=VARCHAR}
-		    </if>
-		    <if test="pid!=null">
-		    	and B.pid = #{pid,jdbcType=INTEGER}
-		    </if>
-		</where>
-	</select>
-	
-	<select id="findRoleHrefs" resultType="java.lang.String">
+    <select id="findRoleMenus" resultType="com.bryan.sys.domain.SysMenu" parameterType="map">
+        SELECT
+        B.id ,
+        B.pid ,
+        B.menu_code AS menuCode,
+        B.menu_name AS menuName,
+        B.icon ,
+        B.discribtion ,
+        B.menu_sort AS menuSort,
+        B.menu_type AS menuType,
+        B.href ,
+        B.permission_value AS permissionValue,
+        B.remark ,
+        B.ctime ,
+        B.mtime
+        FROM
+        sys_role_menu A
+        LEFT JOIN sys_menu B ON A.sys_menu_id=B.id
+        <where>
+            <if test="sysRoleId!=null">
+                A.sys_role_id = #{sysRoleId,jdbcType=INTEGER}
+            </if>
+            <if test="menuType!=null">
+                and B.menu_type=#{menuType,jdbcType=VARCHAR}
+            </if>
+            <if test="pid!=null">
+                and B.pid = #{pid,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <select id="findRoleHrefs" resultType="java.lang.String">
 		SELECT DISTINCT
 			t2.href
 		FROM
@@ -59,9 +59,9 @@
 		WHERE
 			t1.sys_role_id = #{sysRoleId,jdbcType=INTEGER} AND t2.href IS NOT NULL
 	</select>
-	
-	<!-- 角色对应菜单id列表,查询选中的菜单-->
-	<select id="findRoleMenuIds" resultType="java.lang.Integer" parameterType="map">
+
+    <!-- 角色对应菜单id列表,查询选中的菜单-->
+    <select id="findRoleMenuIds" resultType="java.lang.Integer" parameterType="map">
 		SELECT
 			sys_menu_id
 		FROM
@@ -69,36 +69,34 @@
 		WHERE
 			sys_role_id = #{sysRoleId,jdbcType=INTEGER} and select_state = '10'
 	</select>
-	
-	<!-- 查询角色对应的左侧及业内按钮-->
-	<select id="findLeftAndPageButtons" resultType="com.bryan.sys.domain.SysMenu" parameterType="map">
-		SELECT
-		  B.id ,
-		  B.pid ,
-		  B.menu_code AS menuCode,
-		  B.menu_name AS menuName,
-		  B.icon  ,
-		  B.discribtion ,
-		  B.menu_sort AS menuSort,
-		  B.menu_type AS menuType,
-		  B.href ,
-		  B.permission_value AS permissionValue,
-		  B.remark ,
-		  B.ctime ,
-		  B.mtime
-		FROM
-			sys_role_menu A
-		LEFT JOIN sys_menu B ON A.sys_menu_id=B.id
-		<where>
-				A.sys_role_id = #{sysRoleId,jdbcType=INTEGER} 
-				and B.menu_type in
-				<foreach collection="menuType" item="item" index="index"  open="(" separator="," close=")">  
-				  #{item}  
-				</foreach>
-		</where>
-	</select>
-	
-	
-    
-	  
+
+    <!-- 查询角色对应的左侧及业内按钮-->
+    <select id="findLeftAndPageButtons" resultType="com.bryan.sys.domain.SysMenu" parameterType="map">
+        SELECT
+        B.id ,
+        B.pid ,
+        B.menu_code AS menuCode,
+        B.menu_name AS menuName,
+        B.icon ,
+        B.discribtion ,
+        B.menu_sort AS menuSort,
+        B.menu_type AS menuType,
+        B.href ,
+        B.permission_value AS permissionValue,
+        B.remark ,
+        B.ctime ,
+        B.mtime
+        FROM
+        sys_role_menu A
+        LEFT JOIN sys_menu B ON A.sys_menu_id=B.id
+        <where>
+            A.sys_role_id = #{sysRoleId,jdbcType=INTEGER}
+            and B.menu_type in
+            <foreach collection="menuType" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+
 </mapper>

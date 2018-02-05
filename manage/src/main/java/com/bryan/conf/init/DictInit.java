@@ -21,8 +21,8 @@ import javax.annotation.Resource;
  */
 @Configuration
 @Order(98)
-public class DictConfig implements CommandLineRunner {
-    private static final Logger logger = LoggerFactory.getLogger(DictConfig.class);
+public class DictInit implements CommandLineRunner {
+    private static final Logger logger = LoggerFactory.getLogger(DictInit.class);
 
     @Resource
     private SysDictService sysDictService;
