@@ -1,4 +1,4 @@
-package com.bryan.filter;
+package com.bryan.conf.filter;
 
 import com.alibaba.fastjson.JSON;
 
