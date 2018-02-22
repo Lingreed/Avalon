@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.sys.mapper.SysOrgMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysOrg">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="org_sort" property="orgSort" jdbcType="INTEGER" />
+		<result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+		<result column="org_type" property="orgType" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="contact_user" property="contactUser" jdbcType="VARCHAR" />
+		<result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+		<result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+		<result column="fax" property="fax" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+		<result column="ext1" property="ext1" jdbcType="VARCHAR" />
+		<result column="ext2" property="ext2" jdbcType="VARCHAR" />
+		<result column="ext3" property="ext3" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        pid,
+        org_name,
+        org_sort,
+        area_code,
+        org_type,
+        address,
+        contact_user,
+        contact_phone,
+        zip_code,
+        fax,
+        email,
+        state,
+        remark,
+        ctime,
+        mtime,
+        ext1,
+        ext2,
+        ext3    </sql>
+    
+	  
+</mapper>
