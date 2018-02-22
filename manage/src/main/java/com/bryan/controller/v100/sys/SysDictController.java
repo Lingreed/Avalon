@@ -50,9 +50,9 @@ public class SysDictController extends BaseController {
 
         if (dict.getId() == null || dict.getId() == 0) {
             //保存
-            sysDictService.saveSysDict(dict, sessionUser);
+            sysDictService.saveSysDict(dict);
         } else {
-            sysDictService.updateSysDict(dict, sessionUser);
+            sysDictService.updateSysDict(dict);
         }
         return ApiResult.newInstance();
     }

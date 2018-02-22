@@ -14,15 +14,13 @@ public interface SysDictTypeService extends BaseService<SysDictType> {
      * 保存字典类型
      *
      * @param dictType
-     * @param sessionUser
      */
-    void saveSysDictType(SysDictType dictType, SysUser sessionUser);
+    void saveSysDictType(SysDictType dictType);
 
     /**
      * 更新字典类型
      *
      * @param dictType
-     * @param sessionUser
      */
-    void updateSysDictType(SysDictType dictType, SysUser sessionUser);
+    void updateSysDictType(SysDictType dictType);
 }

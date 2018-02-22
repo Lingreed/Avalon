@@ -14,9 +14,9 @@ import java.util.Map;
  */
 public interface SysDictService extends BaseService<SysDict> {
 
-    void updateSysDict(SysDict dict, SysUser sessionUser);
+    void updateSysDict(SysDict dict);
 
-    void saveSysDict(SysDict dict, SysUser sessionUser);
+    void saveSysDict(SysDict dict);
 
     /**
      * 查询初始化字典列表

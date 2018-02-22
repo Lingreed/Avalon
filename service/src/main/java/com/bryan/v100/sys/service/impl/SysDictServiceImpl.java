@@ -45,10 +45,9 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
     /**
      * 更新字典
      * @param dict
-     * @param sessionUser
      */
     @Override
-    public void updateSysDict(SysDict dict, SysUser sessionUser) {
+    public void updateSysDict(SysDict dict) {
         SysDict dbDict = super.selectByPrimaryKey(dict.getId());
         if(dbDict == null){
             throw new ServiceException("查询字典不存在");
@@ -68,10 +67,9 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
     /**
      * 保存字典项
      * @param dict
-     * @param sessionUser
      */
     @Override
-    public void saveSysDict(SysDict dict, SysUser sessionUser) {
+    public void saveSysDict(SysDict dict) {
         //判断类型是否存在
         SysDictType dictType = sysDictTypeService.selectByPrimaryKey(dict.getSysDictTypeId());
         if (dictType == null) {
