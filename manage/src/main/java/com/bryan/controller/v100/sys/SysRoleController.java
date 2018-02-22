@@ -37,16 +37,16 @@ public class SysRoleController extends BaseController {
     private SysRoleService sysRoleService;
 
     @ResponseBody
-    @RequestMapping(value="/saveOrUpdate", method= RequestMethod.POST)
+    @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
     public ApiResult addAndUpdate(HttpServletRequest request, HttpServletResponse response,
-                                  HttpSession session, @RequestBody @Valid SysRoleSaveOrUpdateReq req){
-        SysUser sessionUser = getSessionUser( );
+                                  HttpSession session, @RequestBody @Valid SysRoleSaveOrUpdateReq req) {
+        SysUser sessionUser = getSessionUser();
         SysRole role = new SysRole();
         BeanUtil.copyProperties(role, req);
 
-        if(req.getId() != null && req.getId() >0){
+        if (req.getId() != null && req.getId() > 0) {
             sysRoleService.updateSysRole(role, sessionUser);
-        }else{
+        } else {
             sysRoleService.saveSysRole(role, sessionUser);
         }
         return ApiResult.newInstance();
@@ -54,11 +54,11 @@ public class SysRoleController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/findAll", method=RequestMethod.POST)
-    public ApiResult findAll(HttpServletRequest request,HttpServletResponse response,
-                             @RequestBody SysRoleQueryReq req){
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    public ApiResult findAll(HttpServletRequest request, HttpServletResponse response,
+                             @RequestBody SysRoleQueryReq req) {
         Example example = new Example(SysRole.class);
-        if(StringUtil.isNotBlank(req.getState())){
+        if (StringUtil.isNotBlank(req.getState())) {
             example.createCriteria().andEqualTo("state", req.getState());
         }
         List<SysRole> list = sysRoleService.selectByExample(example);
@@ -67,24 +67,24 @@ public class SysRoleController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/findPageList", method=RequestMethod.POST)
-    public ApiResult findPageList(HttpServletRequest request,HttpServletResponse response,
-                                  HttpSession session,@RequestBody SysRoleQueryReq req){
+    @RequestMapping(value = "/findPageList", method = RequestMethod.POST)
+    public ApiResult findPageList(HttpServletRequest request, HttpServletResponse response,
+                                  HttpSession session, @RequestBody SysRoleQueryReq req) {
         Example example = new Example(SysRole.class);
         Example.Criteria param = example.createCriteria();
-        if(StringUtil.isNotBlank(req.getRoleCode())){
-            param.andLike("roleCode", "%"+req.getRoleCode()+"%");
+        if (StringUtil.isNotBlank(req.getRoleCode())) {
+            param.andLike("roleCode", "%" + req.getRoleCode() + "%");
         }
-        if(StringUtil.isNotBlank(req.getRoleName())){
+        if (StringUtil.isNotBlank(req.getRoleName())) {
             param.andLike("roleName", "%" + req.getRoleName() + "%");
         }
-        if(StringUtil.isNotBlank(req.getState())){
-            param.andEqualTo("state",req.getState());
+        if (StringUtil.isNotBlank(req.getState())) {
+            param.andEqualTo("state", req.getState());
         }
-        if(StringUtil.isNotBlank(req.getStartTime())){
+        if (StringUtil.isNotBlank(req.getStartTime())) {
             param.andGreaterThanOrEqualTo("ctime", req.getStartTime());
         }
-        if(StringUtil.isNotBlank(req.getEndTime())){
+        if (StringUtil.isNotBlank(req.getEndTime())) {
             param.andLessThanOrEqualTo("ctime", req.getEndTime());
         }
 
@@ -97,11 +97,11 @@ public class SysRoleController extends BaseController {
 
     }
 
-    @RequestMapping(value="/findDetail", method=RequestMethod.POST)
+    @RequestMapping(value = "/findDetail", method = RequestMethod.POST)
     public ApiResult findDetail(HttpServletRequest request, HttpServletResponse response,
-                                @RequestBody SysRoleQueryReq req){
+                                @RequestBody SysRoleQueryReq req) {
         Example example = new Example(SysRole.class);
-        example.createCriteria().andEqualTo("id",req.getRoleId());
+        example.createCriteria().andEqualTo("id", req.getRoleId());
         SysRole role = sysRoleService.selectOneByExample(example);
         return ApiResult.newInstance().addResult(role);
     }
