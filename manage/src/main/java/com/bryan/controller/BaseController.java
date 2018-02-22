@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2018/2/5
  */
 @RestController
-@Scope("prototype")
+//@Scope("prototype")
 @RequestMapping("/api/v100")
 public class BaseController {
 
@@ -47,6 +47,11 @@ public class BaseController {
         RedisTemplateUtil.set(Global.getToken(), sysUser, RedisConstant.TOKEN_TIME_OUT);
     }
 
+    /**
+     * 获取sessionuser
+     *
+     * @return
+     */
     public SysUserLoginModel getSessionUser() {
         return RedisTemplateUtil.get(Global.getToken());
     }

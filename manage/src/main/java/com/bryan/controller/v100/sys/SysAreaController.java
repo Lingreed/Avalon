@@ -33,7 +33,7 @@ import java.util.Map;
  * @date 2018/2/7
  */
 @RestController
-@Scope("prototype")
+//@Scope("prototype")
 @RequestMapping("/api/v100/sys/sysArea")
 public class SysAreaController extends BaseController {
 
