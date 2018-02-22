@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Bryan.Lin
@@ -55,9 +52,16 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenu> impleme
         return null;
     }
 
+    /**
+     * 查询角色对应的菜单ids
+     * @param roleId
+     * @return
+     */
     @Override
     public List<Integer> findRoleMenuIds(Integer roleId) {
-        return null;
+        Map<String,Object> map = new HashMap<>();
+        map.put("sysRoleId", roleId);
+        return sysRoleMenuMapper.findRoleMenuIds(map);
     }
 
     @Override

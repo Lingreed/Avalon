@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.sys.mapper.SysMenuMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysMenu">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+		<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
+		<result column="discribtion" property="discribtion" jdbcType="VARCHAR" />
+		<result column="menu_sort" property="menuSort" jdbcType="INTEGER" />
+		<result column="menu_type" property="menuType" jdbcType="VARCHAR" />
+		<result column="href" property="href" jdbcType="VARCHAR" />
+		<result column="permission_value" property="permissionValue" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        pid,
+        menu_code,
+        menu_name,
+        icon,
+        discribtion,
+        menu_sort,
+        menu_type,
+        href,
+        permission_value,
+        remark,
+        ctime,
+        mtime    </sql>
+    
+	  
+</mapper>
