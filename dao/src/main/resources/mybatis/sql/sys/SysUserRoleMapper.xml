@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.sys.mapper.SysUserRoleMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysUserRole">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="sys_user_id" property="sysUserId" jdbcType="INTEGER" />
+		<result column="sys_role_id" property="sysRoleId" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        sys_user_id,
+        sys_role_id,
+        remark,
+        ctime    
+    </sql>
+    
+    <select id="findSysUserRoleList" resultType="com.bryan.sys.domain.SysRole"  parameterType="map">
+    	SELECT
+			IFNULL(B.id,"") AS id,
+			IFNULL(B.role_code,"") AS roleCode,
+			IFNULL(B.role_name,"") AS roleName,
+			B.state,
+			B.edit_tag as editTag
+		FROM
+			sys_user_role A
+		LEFT JOIN sys_role B ON B.id = A.sys_role_id
+		WHERE
+			A.sys_user_id = #{sysUserId,jdbcType=INTEGER}
+    </select>
+	  
+</mapper>

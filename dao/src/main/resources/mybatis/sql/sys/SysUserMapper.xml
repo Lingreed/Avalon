@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.sys.mapper.SysUserMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.sys.domain.SysUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="org_id" property="orgId" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="job_no" property="jobNo" jdbcType="VARCHAR" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+		<result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+		<result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+		<result column="ext1" property="ext1" jdbcType="VARCHAR" />
+		<result column="ext2" property="ext2" jdbcType="VARCHAR" />
+		<result column="ext3" property="ext3" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        org_id,
+        user_name,
+        login_pwd,
+        state,
+        job_no,
+        real_name,
+        sex,
+        mobile_phone,
+        email,
+        head_pic,
+        last_login_time,
+        last_login_ip,
+        remark,
+        ctime,
+        mtime,
+        ext1,
+        ext2,
+        ext3    
+    </sql>
+    
+    <!-- 查询用户列表,多条件查询 -->
+    <select id="findSysUserList" resultType="com.bryan.sys.model.SysUserModel" parameterType="map">
+		SELECT DISTINCT
+			A.id,
+			A.user_name AS userName,
+			A.email,
+			A.sex,
+			A.head_pic AS headPic,
+			A.job_no AS jobNo,
+			A.last_login_ip AS lastLoginIp,
+			A.last_login_time AS lastLoginTime,
+			A.remark,
+			A.mobile_phone AS mobilePhone,
+			A.org_id AS orgId,
+			A.real_name AS realName,
+			A.state,
+			D.org_name AS orgName,
+			A.ctime AS ctime
+		FROM
+			sys_user A
+		LEFT JOIN sys_user_role B ON B.sys_user_id = A.id
+		LEFT JOIN sys_org D ON D.id = A.org_id
+		<where>
+			<if test="sysUserId != null ">
+		         A.id = #{sysUserId,jdbcType=INTEGER}
+		    </if>
+		    <if test="orgId != null ">
+		         and D.id = #{orgId,jdbcType=INTEGER}
+		    </if>
+		    <if test="userName != null">
+				<![CDATA[  and A.user_name like concat('%',#{userName,jdbcType=VARCHAR},'%')  ]]>
+			</if>
+			<if test="state != null ">
+		        and A.state = #{state,jdbcType=VARCHAR}
+		    </if>
+			<if test="jobNo != null">
+				and <![CDATA[ A.job_no like concat('%',#{jobNo,jdbcType=VARCHAR},'%')  ]]>
+			</if>
+			<if test="realName != null">
+				<![CDATA[ and A.real_name like concat('%',#{realName,jdbcType=VARCHAR},'%')  ]]>
+			</if>
+			<if test="sex != null ">
+		         and A.sex = #{sex,jdbcType=VARCHAR}
+		    </if>
+		    <if test="mobilePhone != null ">
+		         and A.mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+		    </if>
+			<if test="email != null ">
+		         and A.email = #{email,jdbcType=VARCHAR}
+		    </if>
+		    <if test="roleIds != null">
+		    	and B.sys_role_id in
+				<foreach collection="roleIds" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+		    </if>
+		    <if test="startTime != null">
+	    		<![CDATA[ and DATE_FORMAT(A.create_time,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+	    	<if test="endTime != null">
+	    		<![CDATA[ and DATE_FORMAT(A.create_time,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+		</where>
+		order by A.id desc
+	</select>
+	  
+</mapper>
