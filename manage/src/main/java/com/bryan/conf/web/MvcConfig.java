@@ -92,7 +92,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     @Bean
     public CommonsMultipartResolver multipartResolver() {
     	CommonsMultipartResolver resolver = null;
-    	String tmpPath = "/data/img/tmp/";
+    	String tmpPath = "/Users/jiang/work/attachment/imgs/tmp/";
     	try {
     		File file = new File(tmpPath);
     		if(!file.exists()){
@@ -103,7 +103,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     		resolver.setResolveLazily(true);
     		// 默认的是10240,最小的图片是10k;这里改成1k.
     		resolver.setMaxInMemorySize(1024);
-    		resolver.setUploadTempDir(new FileSystemResource("/data/img/tmp/"));
+    		resolver.setUploadTempDir(new FileSystemResource("/Users/jiang/work/attachment/imgs/tmp/"));
     		resolver.setMaxUploadSize(2*1024*1024);//上传文件大小 2M 2*1024*1024
     		return resolver;
 		} catch (Exception e) {
