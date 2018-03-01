@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.user.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.user.domain.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uuid" property="uuid" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="auth_name" property="authName" jdbcType="VARCHAR" />
+		<result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
+		<result column="pay_pwd" property="payPwd" jdbcType="VARCHAR" />
+		<result column="utype" property="utype" jdbcType="VARCHAR" />
+		<result column="loan_tag" property="loanTag" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="clinet_udid" property="clinetUdid" jdbcType="VARCHAR" />
+		<result column="client_idfa" property="clientIdfa" jdbcType="VARCHAR" />
+		<result column="reg_source" property="regSource" jdbcType="VARCHAR" />
+		<result column="client_type" property="clientType" jdbcType="VARCHAR" />
+		<result column="invite_code" property="inviteCode" jdbcType="VARCHAR" />
+		<result column="invite_count" property="inviteCount" jdbcType="INTEGER" />
+		<result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+		<result column="source_url" property="sourceUrl" jdbcType="VARCHAR" />
+		<result column="qrcode" property="qrcode" jdbcType="VARCHAR" />
+		<result column="wx_openid" property="wxOpenid" jdbcType="VARCHAR" />
+		<result column="pay_cust_no" property="payCustNo" jdbcType="VARCHAR" />
+		<result column="pay_acct_no" property="payAcctNo" jdbcType="VARCHAR" />
+		<result column="ext1" property="ext1" jdbcType="VARCHAR" />
+		<result column="ext2" property="ext2" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+		<result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+		<result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+		<result column="often_ip" property="oftenIp" jdbcType="VARCHAR" />
+		<result column="first_invest_time" property="firstInvestTime" jdbcType="TIMESTAMP" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="cip" property="cip" jdbcType="VARCHAR" />
+		<result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+		<result column="mip" property="mip" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        uuid,
+        user_name,
+        auth_name,
+        login_pwd,
+        pay_pwd,
+        utype,
+        loan_tag,
+        state,
+        avatar,
+        mobile,
+        email,
+        clinet_udid,
+        client_idfa,
+        reg_source,
+        client_type,
+        invite_code,
+        invite_count,
+        channel_code,
+        source_url,
+        qrcode,
+        wx_openid,
+        pay_cust_no,
+        pay_acct_no,
+        ext1,
+        ext2,
+        remark,
+        last_login_time,
+        last_login_ip,
+        login_time,
+        login_ip,
+        often_ip,
+        first_invest_time,
+        ctime,
+        cip,
+        mtime,
+        mip    
+    </sql>
+
+    <!--  个人用户信息查询  -->
+    <select id="findUserPersonInfoList" resultType="com.bryan.user.model.UserPersonInfoModel" parameterType="map">
+        SELECT
+	        A.id AS userId,
+	        A.user_name AS userName,
+	        B.real_name AS realName,
+	        B.id_number AS idNumber,
+	        A.pay_cust_no AS payCustNo,
+	        A.pay_acct_no AS payAcctNo,
+	        A.ctime AS ctime,
+	        A.cip AS cip,
+	        A.utype AS utype,
+	        A.loan_tag AS loanTag,
+	        A.state AS state,
+	        A.mobile AS mobile,
+	        A.email AS email,
+	        A.reg_source AS regSource,
+	        A.client_type AS clientType,
+	        A.invite_code AS inviteCode,
+	        C.real_name_state AS realNameState,
+	        A.invite_count AS inviteCount
+        FROM
+        user A
+        LEFT JOIN user_person_info B ON B.user_id = A.id
+        LEFT JOIN user_identify C ON C.user_id = A.id
+        <where>
+            <if test="userId != null">
+               A.id = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="realName != null">
+                <![CDATA[  and B.real_name like concat('%',#{realName,jdbcType=VARCHAR},'%')  ]]>
+            </if>
+            <if test="userName != null">
+                and A.user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null">
+                <![CDATA[  and A.mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')  ]]>
+            </if>
+            <if test="idNumber != null">
+                and B.id_number = #{idNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="utype != null">
+                and A.utype = #{utype,jdbcType=VARCHAR}
+            </if>
+            <if test="realNameState != null">
+                and C.real_name_state = #{realNameState,jdbcType=VARCHAR}
+            </if>
+            <if test="loanTag != null">
+                and A.loan_tag in
+				<foreach collection="loanTag" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+            </if>
+            <if test="state != null">
+                and A.state = #{state,jdbcType=VARCHAR}
+            </if>
+            <if test="regSource != null">
+                and A.reg_source in
+                <foreach collection="regSource" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+            </if>
+            <if test="clientType != null">
+                and A.client_type in
+                <foreach collection="clientType" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+            </if>
+            <if test="startTime != null">
+	    		<![CDATA[ and DATE_FORMAT(A.ctime,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+	    	<if test="endTime != null">
+	    		<![CDATA[ and DATE_FORMAT(A.ctime,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+        </where>
+        ORDER BY A.id DESC
+    </select>
+    
+    <!-- 企业用户信息查询 -->
+    <select id="findUserCorpInfoList" resultType="com.bryan.user.model.UserCorpInfoModel" parameterType="map">
+        SELECT
+	        A.id AS userId,
+	        A.user_name AS userName,
+	        B.corp_name AS corpName,
+	        B.tax_number AS taxNumber,
+	        B.license_number AS licenseNumber,
+	        B.agency_code AS agencyCode,
+	        A.pay_cust_no AS payCustNo,
+	        A.pay_acct_no AS payAcctNo,
+	        A.ctime AS ctime,
+	        A.cip AS cip,
+	        A.utype AS utype,
+	        A.loan_tag AS loanTag,
+	        A.state AS state,
+	        A.mobile AS mobile,
+	        A.email AS email,
+	        A.reg_source AS regSource,
+	        A.client_type AS clientType,
+	        A.invite_code AS inviteCode,
+	        C.real_name_state AS realNameState,
+	        A.invite_count AS inviteCount
+        FROM
+        user A
+        LEFT JOIN user_corp_info B ON B.user_id = A.id
+        LEFT JOIN user_identify C ON C.user_id = A.id
+        <where>
+            <if test="userId != null">
+               A.id = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="corpName != null">
+                <![CDATA[  and B.corp_name like concat('%',#{corpName,jdbcType=VARCHAR},'%')  ]]>
+            </if>
+            <if test="userName != null">
+                and A.user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null">
+                <![CDATA[  and A.mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')  ]]>
+            </if>
+            <if test="agencyCode != null">
+                and B.agency_code = #{agencyCode,jdbcType=VARCHAR}
+            </if>
+            <if test="utype != null">
+                and A.utype = #{utype,jdbcType=VARCHAR}
+            </if>
+            <if test="realNameState != null">
+                and C.real_name_state = #{realNameState,jdbcType=VARCHAR}
+            </if>
+            <if test="loanTag != null">
+                 and A.loan_tag in
+				<foreach collection="loanTag" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+            </if>
+            <if test="state != null">
+                and A.state = #{state,jdbcType=VARCHAR}
+            </if>
+            <if test="regSource != null">
+                and A.reg_source in
+                <foreach collection="regSource" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+            </if>
+            <if test="clientType != null">
+                and A.client_type in
+                <foreach collection="clientType" item="item" index="index"  open="(" separator="," close=")">  
+				  #{item}  
+				</foreach>
+            </if>
+            <if test="startTime != null">
+	    		<![CDATA[ and DATE_FORMAT(A.ctime,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+	    	<if test="endTime != null">
+	    		<![CDATA[ and DATE_FORMAT(A.ctime,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+        </where>
+        ORDER BY A.id DESC
+    </select>
+    
+    <select id="findUsersData" resultType="com.bryan.user.model.UserDataModel" parameterType="map">
+        SELECT
+	        id AS id,
+	        user_name AS userName,
+	        auth_name AS authName,
+	        utype AS utype,
+	        state AS state,
+	        mobile AS mobile,
+	        email AS email
+        FROM user
+        <where>
+            <if test="loanTag!=null">
+            	loan_tag = #{loanTag,jdbcType=VARCHAR}
+            </if>
+            <if test="authName!=null">
+                and auth_name = #{authName,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null">
+                and user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null">
+                <![CDATA[  and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')  ]]>
+            </if>
+            <if test="utype != null">
+                and utype = #{utype,jdbcType=VARCHAR}
+            </if>
+            <if test="state != null">
+                and state = #{state,jdbcType=VARCHAR}
+            </if>
+            <if test="channelCode != null">
+                and channel_code = #{channelCode, jdbcType = VARCHAR}
+            </if>
+        </where>
+    </select>
+    
+	<select id="findByTwelveWeek" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map" >
+      SELECT DATE_FORMAT(ctime,'%Y%u')resultKey , COUNT(*) COUNT  FROM USER
+        <where>
+            <if test="regSource != null and regSource.size>0">
+                reg_source in
+                <foreach collection="regSource" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="clientType != null and clientType.size>0 ">
+                and   client_type in
+                <foreach collection="clientType" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="authTag != null">
+                and auth_name is not null
+            </if>
+            <if test="startTime != null">
+	    		<![CDATA[ and DATE_FORMAT(ctime,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+	    	<if test="endTime != null">
+	    		<![CDATA[ and DATE_FORMAT(ctime,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+        </where>
+      GROUP BY resultKey
+    </select>
+
+    <select id="findByTwelveMonth" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map" >
+        SELECT DATE_FORMAT(ctime,'%Y-%m')resultKey , COUNT(*) COUNT  FROM USER
+        <where>
+            <if test="regSourceType != null and regSourceType.size>0">
+                reg_source in
+                <foreach collection="regSourceType" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="clientType != null and clientType.size>0 ">
+                and   client_type in
+                <foreach collection="clientType" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="authTag != null">
+                and auth_name is not null
+            </if>
+            <if test="startTime != null">
+	    		<![CDATA[ and DATE_FORMAT(ctime,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+	    	<if test="endTime != null">
+	    		<![CDATA[ and DATE_FORMAT(ctime,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+        </where>
+        GROUP BY resultKey
+    </select>
+    
+    <select id="findByThirtyDay" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map" >
+        SELECT
+			DATE_FORMAT(ctime, '%Y-%m-%d') AS resultKey,
+			COUNT(*) AS COUNT
+		FROM
+			USER
+        <where>
+            <if test="regSource != null and regSource.size>0">
+                reg_source in
+                <foreach collection="regSource" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="clientType != null and clientType.size>0 ">
+                and   client_type in
+                <foreach collection="clientType" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="authTag != null">
+                and auth_name is not null
+            </if>
+            <if test="startTime != null">
+	    		<![CDATA[ and DATE_FORMAT(ctime,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+	    	<if test="endTime != null">
+	    		<![CDATA[ and DATE_FORMAT(ctime,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')]]>
+	    	</if>
+        </where>
+        GROUP BY resultKey
+    </select>
+    
+    <select id="findByBeforeMonthy" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+        SELECT COUNT(*) COUNT  FROM user
+        <where>
+            <if test="authTag != null">
+                and auth_name is not null
+            </if>
+            <if test=" 1 == 1">
+               AND ctime >=DATE_SUB(NOW(),INTERVAL 1 MONTH)
+                AND
+                <![CDATA[ ctime <=  DATE_SUB(NOW(),INTERVAL 0 MONTH)]]>
+            </if>
+        </where>
+    </select>
+    
+    <select id="findByThreeMonthy" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+        SELECT COUNT(*) COUNT  FROM user
+        <where>
+            <if test="authTag != null">
+                and auth_name is not null
+            </if>
+            <if test=" 1 == 1">
+             AND   ctime >=DATE_SUB(NOW(),INTERVAL 2 MONTH)
+                AND
+                <![CDATA[ ctime <=  DATE_SUB(NOW(),INTERVAL -1 MONTH)]]>
+            </if>
+        </where>
+    </select>
+    
+    <select id="findBySixMonthy" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+        SELECT COUNT(*) COUNT  FROM user
+        <where>
+            <if test="authTag != null">
+                auth_name is not null
+            </if>
+            <if test=" 1 == 1">
+              AND  ctime >=DATE_SUB(NOW(),INTERVAL 5 MONTH)
+                AND
+                <![CDATA[ ctime <=  DATE_SUB(NOW(),INTERVAL -1 MONTH)]]>
+            </if>
+        </where>
+    </select>
+    
+    <select id="findBySum" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+        SELECT COUNT(*) COUNT  FROM user
+        <where>
+        <if test="authTag != null">
+            and auth_name is not null
+        </if>
+        </where>
+    </select>
+    
+    <select id="findByRegisterNum" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+        SELECT COUNT(*) COUNT  FROM user
+        WHERE
+          channel_code = #{channelCode, jdbcType = VARCHAR}
+        AND
+        ctime >= #{startTime,jdbcType=TIMESTAMP}
+                AND
+          ctime <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
+    </select>
+    
+    <select id="findFirstAutonym" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+        SELECT COUNT(*) COUNT  FROM user
+        WHERE
+        channel_code = #{channelCode, jdbcType = VARCHAR}
+        AND
+        ctime <![CDATA[ >= ]]>#{startTime,jdbcType=TIMESTAMP}
+        AND
+         ctime <![CDATA[  <=  ]]>#{endTime,jdbcType=TIMESTAMP}
+        AND
+        auth_name is not null
+    </select>
+
+    <select id="selectPayPwdByUserId" resultType="string" parameterType="int">
+      SELECT pay_pwd FROM user WHERE id = #{userId}
+    </select>
+
+    <select id="findMobile" resultType="java.lang.String" parameterType="int">
+      SELECT mobile FROM user WHERE id = #{userId}
+    </select>
+
+    <update id="increaseInviteCount" parameterType="int">
+      UPDATE user SET invite_count = invite_count + 1 WHERE id = #{userId}
+    </update>
+
+</mapper>

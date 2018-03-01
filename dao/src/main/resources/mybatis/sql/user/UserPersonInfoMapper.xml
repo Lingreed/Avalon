@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.user.mapper.UserPersonInfoMapper">
+    <resultMap id="BaseResultMap" type="com.bryan.user.domain.UserPersonInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+		<result column="id_address" property="idAddress" jdbcType="VARCHAR" />
+		<result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="birth" property="birth" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="fax" property="fax" jdbcType="VARCHAR" />
+		<result column="marriage" property="marriage" jdbcType="VARCHAR" />
+		<result column="child_tag" property="childTag" jdbcType="VARCHAR" />
+		<result column="annual_income" property="annualIncome" jdbcType="DECIMAL" />
+		<result column="company" property="company" jdbcType="VARCHAR" />
+		<result column="position" property="position" jdbcType="VARCHAR" />
+		<result column="work_tag" property="workTag" jdbcType="VARCHAR" />
+		<result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+		<result column="house_tag" property="houseTag" jdbcType="VARCHAR" />
+		<result column="fixed_assets" property="fixedAssets" jdbcType="VARCHAR" />
+		<result column="active_assets" property="activeAssets" jdbcType="VARCHAR" />
+		<result column="personal_profile" property="personalProfile" jdbcType="VARCHAR" />
+		<result column="credit_record" property="creditRecord" jdbcType="VARCHAR" />
+		<result column="guarant_detail" property="guarantDetail" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="cip" property="cip" jdbcType="VARCHAR" />
+		<result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+		<result column="mip" property="mip" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        user_id,
+        real_name,
+        id_number,
+        id_address,
+        province_code,
+        sex,
+        birth,
+        age,
+        tel,
+        fax,
+        marriage,
+        child_tag,
+        annual_income,
+        company,
+        position,
+        work_tag,
+        company_address,
+        house_tag,
+        fixed_assets,
+        active_assets,
+        personal_profile,
+        credit_record,
+        guarant_detail,
+        remark,
+        ctime,
+        cip,
+        mtime,
+        mip    
+    </sql>
+
+    <select id="selectIdNumberByUserId" resultType="string" parameterType="int">
+        SELECT id_number FROM user_person_info WHERE user_id = #{userId}
+    </select>
+    
+</mapper>

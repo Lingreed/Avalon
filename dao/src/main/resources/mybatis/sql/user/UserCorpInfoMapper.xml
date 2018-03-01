@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bryan.user.mapper.UserCorpInfoMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.user.domain.UserCorpInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="corp_name" property="corpName" jdbcType="VARCHAR" />
+		<result column="industry" property="industry" jdbcType="VARCHAR" />
+		<result column="corp_scale" property="corpScale" jdbcType="VARCHAR" />
+		<result column="corp_nature" property="corpNature" jdbcType="VARCHAR" />
+		<result column="shareholders_number" property="shareholdersNumber" jdbcType="INTEGER" />
+		<result column="reg_amt" property="regAmt" jdbcType="DECIMAL" />
+		<result column="tax_number" property="taxNumber" jdbcType="VARCHAR" />
+		<result column="license_number" property="licenseNumber" jdbcType="VARCHAR" />
+		<result column="agency_code" property="agencyCode" jdbcType="VARCHAR" />
+		<result column="contact" property="contact" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="total_assets" property="totalAssets" jdbcType="DECIMAL" />
+		<result column="establish_time" property="establishTime" jdbcType="TIMESTAMP" />
+		<result column="sales_scale" property="salesScale" jdbcType="VARCHAR" />
+		<result column="corp_reg_address" property="corpRegAddress" jdbcType="VARCHAR" />
+		<result column="office_address" property="officeAddress" jdbcType="VARCHAR" />
+		<result column="main_business" property="mainBusiness" jdbcType="VARCHAR" />
+		<result column="ope_state" property="opeState" jdbcType="VARCHAR" />
+		<result column="credit_record" property="creditRecord" jdbcType="VARCHAR" />
+		<result column="legal_name" property="legalName" jdbcType="VARCHAR" />
+		<result column="legal_id_no" property="legalIdNo" jdbcType="VARCHAR" />
+		<result column="legal_mobile" property="legalMobile" jdbcType="VARCHAR" />
+		<result column="legal_address" property="legalAddress" jdbcType="VARCHAR" />
+		<result column="cfo_name" property="cfoName" jdbcType="VARCHAR" />
+		<result column="cfo_mobile" property="cfoMobile" jdbcType="VARCHAR" />
+		<result column="cfo_id_no" property="cfoIdNo" jdbcType="VARCHAR" />
+		<result column="cfo_address" property="cfoAddress" jdbcType="VARCHAR" />
+		<result column="guarant_detail" property="guarantDetail" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="cip" property="cip" jdbcType="VARCHAR" />
+		<result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+		<result column="mip" property="mip" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        id,
+        user_id,
+        corp_name,
+        industry,
+        corp_scale,
+        corp_nature,
+        shareholders_number,
+        reg_amt,
+        tax_number,
+        license_number,
+        agency_code,
+        contact,
+        tel,
+        total_assets,
+        establish_time,
+        sales_scale,
+        corp_reg_address,
+        office_address,
+        main_business,
+        ope_state,
+        credit_record,
+        legal_name,
+        legal_id_no,
+        legal_mobile,
+        legal_address,
+        cfo_name,
+        cfo_mobile,
+        cfo_id_no,
+        cfo_address,
+        guarant_detail,
+        remark,
+        ctime,
+        cip,
+        mtime,
+        mip    
+    </sql>
+	  
+</mapper>
