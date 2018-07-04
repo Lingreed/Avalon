@@ -2,7 +2,7 @@
 <!--<!DOCTYPE xml>-->
 <configuration>
     <!-- 项目名称 -->
-    <property name="PROJECT" value="avalon-manage"/>
+    <property name="PROJECT" value="avalon-quartz"/>
     <contextName>${PROJECT}</contextName>
 
     <!--日志目录-->
@@ -139,7 +139,7 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="DEBUG" />
     </logger>
-    <logger name="com.ibatis" level="ERROR" additivity="false">
+    <logger name="com.ibatis" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="DEBUG" />
     </logger>
@@ -154,12 +154,13 @@
     <logger name="javax.management" level="DEBUG" additivity="false"/>
     <logger name="org.apache.tomcat" level="ERROR" additivity="false"/>
     <logger name="org.mybatis.spring" level="ERROR" additivity="false"/>
-    <logger name="org.apache.ibatis" level="ERROR" additivity="false"/>
+    <logger name="org.apache.ibatis" level="DEBUG" additivity="false"/>
     <logger name="org.apache.coyote" level="INFO" additivity="false"/>
     <logger name="org.apache.commons.beanutils" level="INFO" additivity="false"/>
+    <logger name="org.apache.xerces.parsers.SAXParser" level="ERROR" additivity="false"/>
     <logger name="org.mongodb.driver.cluster.debug" level="ERROR" additivity="false"/>
-
-    <logger name="com.bryan" level="DEBUG" additivity="false">
+    
+    <logger name="com.yogu" level="DEBUG" additivity="false">
         <!-- 控制台输出 -->
         <appender-ref ref="STDOUT" />
         <!-- 文件输出 -->
