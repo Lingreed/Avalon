@@ -14,8 +14,8 @@ import com.bryan.common.utils.SpringContextHolder;
 import com.bryan.common.utils.StringUtil;
 import com.bryan.sys.domain.SysLogManage;
 import com.bryan.sys.model.SysUserLoginModel;
-import com.bryan.v100.async.service.AsyncLogService;
-import com.bryan.v100.sys.service.SysRoleMenuService;
+import com.bryan.v100.service.async.AsyncLogService;
+import com.bryan.v100.service.sys.SysRoleMenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.bryan.v100.sys.service;
+package com.bryan.v100.service.sys;
 
 import com.bryan.common.base.BaseService;
 import com.bryan.sys.domain.SysConfig;

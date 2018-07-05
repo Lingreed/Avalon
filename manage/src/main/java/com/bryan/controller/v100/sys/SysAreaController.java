@@ -6,10 +6,9 @@ import com.bryan.common.constant.ApiResult;
 import com.bryan.controller.BaseController;
 import com.bryan.controller.v100.vo.sys.area.SysAreaQueryReq;
 import com.bryan.sys.domain.SysArea;
-import com.bryan.v100.sys.service.SysAreaService;
+import com.bryan.v100.service.sys.SysAreaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

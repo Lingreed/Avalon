@@ -1,4 +1,4 @@
-package com.bryan.v100.sys.service.impl;
+package com.bryan.v100.service.sys.impl;
 
 import com.bryan.common.base.BaseMapper;
 import com.bryan.common.base.BaseServiceImpl;
@@ -8,9 +8,8 @@ import com.bryan.common.exception.ServiceException;
 import com.bryan.common.redis.RedisTemplateUtil;
 import com.bryan.common.utils.DateUtil;
 import com.bryan.sys.domain.SysDictType;
-import com.bryan.sys.domain.SysUser;
 import com.bryan.sys.mapper.SysDictTypeMapper;
-import com.bryan.v100.sys.service.SysDictTypeService;
+import com.bryan.v100.service.sys.SysDictTypeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;

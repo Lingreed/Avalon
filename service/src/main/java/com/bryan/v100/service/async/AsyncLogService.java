@@ -1,7 +1,7 @@
-package com.bryan.v100.async.service;
+package com.bryan.v100.service.async;
 
 import com.bryan.sys.domain.SysLogManage;
-import com.bryan.v100.sys.service.SysLogManageService;
+import com.bryan.v100.service.sys.SysLogManageService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

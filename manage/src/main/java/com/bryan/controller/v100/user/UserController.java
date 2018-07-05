@@ -18,7 +18,7 @@ import com.bryan.user.model.UserCorpInfoModel;
 import com.bryan.user.model.UserDataModel;
 import com.bryan.user.model.UserDetailModel;
 import com.bryan.user.model.UserPersonInfoModel;
-import com.bryan.v100.user.service.UserService;
+import com.bryan.v100.service.user.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;

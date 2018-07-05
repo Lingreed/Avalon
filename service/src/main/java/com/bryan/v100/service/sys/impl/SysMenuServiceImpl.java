@@ -1,4 +1,4 @@
-package com.bryan.v100.sys.service.impl;
+package com.bryan.v100.service.sys.impl;
 
 import com.bryan.common.base.BaseMapper;
 import com.bryan.common.base.BaseServiceImpl;
@@ -11,8 +11,8 @@ import com.bryan.common.utils.DateUtil;
 import com.bryan.sys.domain.SysMenu;
 import com.bryan.sys.mapper.SysMenuMapper;
 import com.bryan.sys.model.SysMenuModel;
-import com.bryan.v100.sys.service.SysMenuService;
-import com.bryan.v100.sys.service.SysRoleMenuService;
+import com.bryan.v100.service.sys.SysMenuService;
+import com.bryan.v100.service.sys.SysRoleMenuService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;

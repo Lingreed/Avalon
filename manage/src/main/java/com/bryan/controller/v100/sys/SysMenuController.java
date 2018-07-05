@@ -8,7 +8,7 @@ import com.bryan.controller.v100.vo.sys.menu.SysMenuSaveOrUpdateReq;
 import com.bryan.sys.domain.SysMenu;
 import com.bryan.sys.model.SysMenuDetailModel;
 import com.bryan.sys.model.SysMenuModel;
-import com.bryan.v100.sys.service.SysMenuService;
+import com.bryan.v100.service.sys.SysMenuService;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 

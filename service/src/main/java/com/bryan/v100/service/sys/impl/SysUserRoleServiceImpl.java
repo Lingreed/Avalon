@@ -1,11 +1,11 @@
-package com.bryan.v100.sys.service.impl;
+package com.bryan.v100.service.sys.impl;
 
 import com.bryan.common.base.BaseMapper;
 import com.bryan.common.base.BaseServiceImpl;
 import com.bryan.sys.domain.SysRole;
 import com.bryan.sys.domain.SysUserRole;
 import com.bryan.sys.mapper.SysUserRoleMapper;
-import com.bryan.v100.sys.service.SysUserRoleService;
+import com.bryan.v100.service.sys.SysUserRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;

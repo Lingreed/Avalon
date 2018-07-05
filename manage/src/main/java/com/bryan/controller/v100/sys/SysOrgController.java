@@ -9,7 +9,7 @@ import com.bryan.sys.domain.SysOrg;
 import com.bryan.sys.domain.SysUser;
 import com.bryan.sys.model.SysOrgDetailModel;
 import com.bryan.sys.model.SysOrgModel;
-import com.bryan.v100.sys.service.SysOrgService;
+import com.bryan.v100.service.sys.SysOrgService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

@@ -1,4 +1,4 @@
-package com.bryan.v100.user.service;
+package com.bryan.v100.service.user;
 
 import com.bryan.common.base.BaseService;
 import com.bryan.user.domain.User;

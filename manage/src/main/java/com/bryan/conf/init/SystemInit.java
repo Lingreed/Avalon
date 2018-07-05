@@ -2,7 +2,7 @@ package com.bryan.conf.init;
 
 import com.bryan.common.constant.redis.RedisConstant;
 import com.bryan.common.redis.RedisTemplateUtil;
-import com.bryan.v100.sys.service.SysConfigService;
+import com.bryan.v100.service.sys.SysConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

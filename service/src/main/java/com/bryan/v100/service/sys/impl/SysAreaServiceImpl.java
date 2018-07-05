@@ -1,10 +1,10 @@
-package com.bryan.v100.sys.service.impl;
+package com.bryan.v100.service.sys.impl;
 
 import com.bryan.common.base.BaseMapper;
 import com.bryan.common.base.BaseServiceImpl;
 import com.bryan.sys.domain.SysArea;
 import com.bryan.sys.mapper.SysAreaMapper;
-import com.bryan.v100.sys.service.SysAreaService;
+import com.bryan.v100.service.sys.SysAreaService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;

@@ -1,10 +1,10 @@
-package com.bryan.v100.sys.service.impl;
+package com.bryan.v100.service.sys.impl;
 
 import com.bryan.common.base.BaseMapper;
 import com.bryan.common.base.BaseServiceImpl;
 import com.bryan.sys.domain.SysLogManage;
 import com.bryan.sys.mapper.SysLogManageMapper;
-import com.bryan.v100.sys.service.SysLogManageService;
+import com.bryan.v100.service.sys.SysLogManageService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

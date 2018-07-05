@@ -1,11 +1,11 @@
-package com.bryan.v100.sys.service.impl;
+package com.bryan.v100.service.sys.impl;
 
 import com.bryan.common.base.BaseMapper;
 import com.bryan.common.base.BaseServiceImpl;
 import com.bryan.common.constant.GlobalConstant;
 import com.bryan.sys.domain.SysConfig;
 import com.bryan.sys.mapper.SysConfigMapper;
-import com.bryan.v100.sys.service.SysConfigService;
+import com.bryan.v100.service.sys.SysConfigService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

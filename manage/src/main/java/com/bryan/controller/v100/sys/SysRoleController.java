@@ -8,7 +8,7 @@ import com.bryan.controller.v100.vo.sys.role.SysRoleQueryReq;
 import com.bryan.controller.v100.vo.sys.role.SysRoleSaveOrUpdateReq;
 import com.bryan.sys.domain.SysRole;
 import com.bryan.sys.domain.SysUser;
-import com.bryan.v100.sys.service.SysRoleService;
+import com.bryan.v100.service.sys.SysRoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
