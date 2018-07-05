@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bryan.user.mapper.UserMapper">
-	<resultMap id="BaseResultMap" type="com.bryan.user.domain.User">
+<mapper namespace="com.bryan.dao.user.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.bryan.dao.user.domain.User">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uuid" property="uuid" jdbcType="VARCHAR" />
 		<result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -83,7 +83,7 @@
     </sql>
 
     <!--  个人用户信息查询  -->
-    <select id="findUserPersonInfoList" resultType="com.bryan.user.model.UserPersonInfoModel" parameterType="map">
+    <select id="findUserPersonInfoList" resultType="com.bryan.dao.user.model.UserPersonInfoModel" parameterType="map">
         SELECT
 	        A.id AS userId,
 	        A.user_name AS userName,
@@ -161,7 +161,7 @@
     </select>
     
     <!-- 企业用户信息查询 -->
-    <select id="findUserCorpInfoList" resultType="com.bryan.user.model.UserCorpInfoModel" parameterType="map">
+    <select id="findUserCorpInfoList" resultType="com.bryan.dao.user.model.UserCorpInfoModel" parameterType="map">
         SELECT
 	        A.id AS userId,
 	        A.user_name AS userName,
@@ -240,7 +240,7 @@
         ORDER BY A.id DESC
     </select>
     
-    <select id="findUsersData" resultType="com.bryan.user.model.UserDataModel" parameterType="map">
+    <select id="findUsersData" resultType="com.bryan.dao.user.model.UserDataModel" parameterType="map">
         SELECT
 	        id AS id,
 	        user_name AS userName,
@@ -275,7 +275,7 @@
         </where>
     </select>
     
-	<select id="findByTwelveWeek" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map" >
+	<select id="findByTwelveWeek" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map" >
       SELECT DATE_FORMAT(ctime,'%Y%u')resultKey , COUNT(*) COUNT  FROM USER
         <where>
             <if test="regSource != null and regSource.size>0">
@@ -303,7 +303,7 @@
       GROUP BY resultKey
     </select>
 
-    <select id="findByTwelveMonth" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map" >
+    <select id="findByTwelveMonth" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map" >
         SELECT DATE_FORMAT(ctime,'%Y-%m')resultKey , COUNT(*) COUNT  FROM USER
         <where>
             <if test="regSourceType != null and regSourceType.size>0">
@@ -331,7 +331,7 @@
         GROUP BY resultKey
     </select>
     
-    <select id="findByThirtyDay" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map" >
+    <select id="findByThirtyDay" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map" >
         SELECT
 			DATE_FORMAT(ctime, '%Y-%m-%d') AS resultKey,
 			COUNT(*) AS COUNT
@@ -363,7 +363,7 @@
         GROUP BY resultKey
     </select>
     
-    <select id="findByBeforeMonthy" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+    <select id="findByBeforeMonthy" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map">
         SELECT COUNT(*) COUNT  FROM user
         <where>
             <if test="authTag != null">
@@ -377,7 +377,7 @@
         </where>
     </select>
     
-    <select id="findByThreeMonthy" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+    <select id="findByThreeMonthy" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map">
         SELECT COUNT(*) COUNT  FROM user
         <where>
             <if test="authTag != null">
@@ -391,7 +391,7 @@
         </where>
     </select>
     
-    <select id="findBySixMonthy" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+    <select id="findBySixMonthy" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map">
         SELECT COUNT(*) COUNT  FROM user
         <where>
             <if test="authTag != null">
@@ -405,7 +405,7 @@
         </where>
     </select>
     
-    <select id="findBySum" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+    <select id="findBySum" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map">
         SELECT COUNT(*) COUNT  FROM user
         <where>
         <if test="authTag != null">
@@ -414,7 +414,7 @@
         </where>
     </select>
     
-    <select id="findByRegisterNum" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+    <select id="findByRegisterNum" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map">
         SELECT COUNT(*) COUNT  FROM user
         WHERE
           channel_code = #{channelCode, jdbcType = VARCHAR}
@@ -424,7 +424,7 @@
           ctime <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
     </select>
     
-    <select id="findFirstAutonym" resultType="com.bryan.stats.model.StatsResultModel" parameterType="map">
+    <select id="findFirstAutonym" resultType="com.bryan.dao.stats.model.StatsResultModel" parameterType="map">
         SELECT COUNT(*) COUNT  FROM user
         WHERE
         channel_code = #{channelCode, jdbcType = VARCHAR}

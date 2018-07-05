@@ -1,11 +1,11 @@
 package com.bryan.v100.service.user;
 
 import com.bryan.common.base.BaseService;
-import com.bryan.user.domain.User;
-import com.bryan.user.model.UserCorpInfoModel;
-import com.bryan.user.model.UserDataModel;
-import com.bryan.user.model.UserDetailModel;
-import com.bryan.user.model.UserPersonInfoModel;
+import com.bryan.dao.user.domain.User;
+import com.bryan.dao.user.model.UserCorpInfoModel;
+import com.bryan.dao.user.model.UserDataModel;
+import com.bryan.dao.user.model.UserDetailModel;
+import com.bryan.dao.user.model.UserPersonInfoModel;
 
 import java.util.List;
 import java.util.Map;
