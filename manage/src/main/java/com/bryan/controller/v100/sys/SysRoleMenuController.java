@@ -5,11 +5,11 @@ import com.bryan.common.exception.ServiceException;
 import com.bryan.controller.BaseController;
 import com.bryan.controller.v100.vo.sys.roleMenu.AddMyRoleMenus;
 import com.bryan.controller.v100.vo.sys.roleMenu.MyRoleMenusReq;
-import com.bryan.sys.domain.SysRoleMenu;
-import com.bryan.sys.domain.SysUser;
-import com.bryan.sys.domain.SysUserRole;
-import com.bryan.sys.model.SysMenuModel;
-import com.bryan.sys.model.SysUserLoginModel;
+import com.bryan.dao.sys.domain.SysRoleMenu;
+import com.bryan.dao.sys.domain.SysUser;
+import com.bryan.dao.sys.domain.SysUserRole;
+import com.bryan.dao.sys.model.SysMenuModel;
+import com.bryan.dao.sys.model.SysUserLoginModel;
 import com.bryan.v100.service.sys.SysMenuService;
 import com.bryan.v100.service.sys.SysRoleMenuService;
 import com.bryan.v100.service.sys.SysUserRoleService;
@@ -46,17 +46,18 @@ public class SysRoleMenuController extends BaseController {
 
     /**
      * 选择角色查询角色对应的导航按钮
+     *
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value="/findRoleInitButton", method= RequestMethod.POST)
+    @RequestMapping(value = "/findRoleInitButton", method = RequestMethod.POST)
     public ApiResult findMyNavButtons(HttpServletRequest request, HttpServletResponse response,
-                                      HttpSession session, @RequestBody MyRoleMenusReq req){
+                                      HttpSession session, @RequestBody MyRoleMenusReq req) {
         SysUserLoginModel user = getSessionUser();
         // 查询用户是否有此角色
         SysUserRole userRole = sysUserRoleService.findUserRole(user.getId(), req.getRoleId());
-        if(userRole == null){
+        if (userRole == null) {
             throw new ServiceException("角色查询失败");
         }
 
@@ -70,25 +71,26 @@ public class SysRoleMenuController extends BaseController {
 
     /**
      * 点击左侧菜单,查询页面按钮
+     *
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value="/findPageButtons", method=RequestMethod.POST)
+    @RequestMapping(value = "/findPageButtons", method = RequestMethod.POST)
     public ApiResult findPageButtons(HttpServletRequest request, HttpServletResponse response,
-                                     HttpSession session,@RequestBody @Valid MyRoleMenusReq req){
-        SysUser user = getSessionUser( );
+                                     HttpSession session, @RequestBody @Valid MyRoleMenusReq req) {
+        SysUser user = getSessionUser();
         // 查询用户是否有此角色
         SysUserRole userRole = sysUserRoleService.findUserRole(user.getId(), req.getRoleId());
-        if(userRole == null){
+        if (userRole == null) {
             throw new ServiceException("角色查询失败");
         }
 
         SysRoleMenu roleMenu = sysRoleMenuService.findSysRoleMenu(req.getRoleId(), req.getLeftMenuId());
-        if(roleMenu == null){
+        if (roleMenu == null) {
             throw new ServiceException("查询左侧菜单记录失败");
         }
-        Map<String,String> map = sysRoleMenuService.findPageMenus(req.getRoleId(), req.getLeftMenuId());
+        Map<String, String> map = sysRoleMenuService.findPageMenus(req.getRoleId(), req.getLeftMenuId());
 
         return ApiResult.newInstance().addResult(map);
     }
@@ -96,31 +98,33 @@ public class SysRoleMenuController extends BaseController {
 
     /**
      * 添加或修改角色对应的菜单
+     *
      * @param request
      * @param response
      * @param session
      * @param req
      * @return
      */
-    @RequestMapping(value="/saveOrUpdateRoleMenus", method=RequestMethod.POST)
+    @RequestMapping(value = "/saveOrUpdateRoleMenus", method = RequestMethod.POST)
     public ApiResult addOrUpdateMyRoleMenus(HttpServletRequest request, HttpServletResponse response,
-                                            HttpSession session,@RequestBody @Valid AddMyRoleMenus req){
+                                            HttpSession session, @RequestBody @Valid AddMyRoleMenus req) {
         // 添加角色菜单按钮
-        sysRoleMenuService.addRoleMenus(req.getRoleId(),req.getMenuIds());
+        sysRoleMenuService.addRoleMenus(req.getRoleId(), req.getMenuIds());
         return ApiResult.newInstance();
     }
 
     /**
      * 查询角色对应的菜单
+     *
      * @param request
      * @param response
      * @param session
      * @param req
      * @return
      */
-    @RequestMapping(value="/findMyRoleMenus", method=RequestMethod.POST)
+    @RequestMapping(value = "/findMyRoleMenus", method = RequestMethod.POST)
     public ApiResult findMyRoleMenus(HttpServletRequest request, HttpServletResponse response,
-                                     HttpSession session, @RequestBody MyRoleMenusReq  req){
+                                     HttpSession session, @RequestBody MyRoleMenusReq req) {
 
         List<Integer> list = sysMenuService.findRoleMenuList(req.getRoleId());
         return ApiResult.newInstance().addResult(list);

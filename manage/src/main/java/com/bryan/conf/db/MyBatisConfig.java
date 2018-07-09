@@ -29,7 +29,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     public SqlSessionFactory sqlSessionFactoryBean() {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("com.bryan.**.domain");
+        bean.setTypeAliasesPackage("com.bryan.dao.**.domain");
 
         //分页插件
         PageHelper pageHelper = new PageHelper();

@@ -1,8 +1,7 @@
 package com.bryan.v100.service.sys;
 
 import com.bryan.common.base.BaseService;
-import com.bryan.sys.domain.SysDict;
-import com.bryan.sys.domain.SysUser;
+import com.bryan.dao.sys.domain.SysDict;
 
 import java.util.List;
 import java.util.Map;

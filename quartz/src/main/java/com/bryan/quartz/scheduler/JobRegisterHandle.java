@@ -29,13 +29,14 @@ public class JobRegisterHandle {
 
     /**
      * 部署调度任务
+     *
      * @param model
      * @throws SchedulerException
      */
     public static void deployScheduler(SchedulerTask model) throws SchedulerException {
         _log.info("任务路径：{}", model.getPath());
         Class<? extends Job> aClaz = Reflections.reflex(model.getPath());
-        JobDetail job = newJob(aClaz).withIdentity(model.getJobName(),model.getGroupName()).build();
+        JobDetail job = newJob(aClaz).withIdentity(model.getJobName(), model.getGroupName()).build();
         // //创建一个触发器的名称
         Trigger trigger = newTrigger().withIdentity(model.getTriggersName(), model.getGroupName())
                 .withSchedule(cronSchedule(model.getCron())).startNow().build();
@@ -65,6 +66,7 @@ public class JobRegisterHandle {
 
     /**
      * 批量暂停所有调度任务
+     *
      * @throws SchedulerException
      */
     public static void batchesSuspendScheduler() throws SchedulerException {
@@ -73,6 +75,7 @@ public class JobRegisterHandle {
 
     /**
      * 恢复调度任务
+     *
      * @param model
      * @throws SchedulerException
      */
@@ -128,11 +131,12 @@ public class JobRegisterHandle {
 
     /**
      * 删除任务列表
+     *
      * @param groupName
      */
-    public static void deleteTaskInfoChange(String groupName){
+    public static void deleteTaskInfoChange(String groupName) {
         Example example = new Example(SchedulerTask.class);
-        example.createCriteria().andEqualTo("groupName",groupName);
+        example.createCriteria().andEqualTo("groupName", groupName);
         schedulerTaskService.deleteByExample(example);
     }
 }

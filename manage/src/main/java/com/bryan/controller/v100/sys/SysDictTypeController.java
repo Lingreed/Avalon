@@ -7,7 +7,7 @@ import com.bryan.common.utils.StringUtil;
 import com.bryan.controller.BaseController;
 import com.bryan.controller.v100.vo.sys.dict.DictTypeQueryReq;
 import com.bryan.controller.v100.vo.sys.dict.DictTypeSaveOrUpdateReq;
-import com.bryan.sys.domain.SysDictType;
+import com.bryan.dao.sys.domain.SysDictType;
 import com.bryan.v100.service.sys.SysDictTypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

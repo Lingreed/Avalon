@@ -45,9 +45,9 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @ResponseBody
-    @RequestMapping(value="/findPersonPageList", method= RequestMethod.POST)
+    @RequestMapping(value = "/findPersonPageList", method = RequestMethod.POST)
     public ApiResult findPersonPageList(HttpServletRequest request, HttpServletResponse response,
-                                        @RequestBody PersonInfoQueryReq req){
+                                        @RequestBody PersonInfoQueryReq req) {
 
         String loanTagStr = req.getLoanTag();
         String[] loanTags = loanTagStr.split(",");
@@ -81,10 +81,10 @@ public class UserController extends BaseController {
         if (StringUtil.isNotBlank(req.getState())) {
             map.put("state", req.getState());
         }
-        if (req.getRegSource()!=null && !req.getRegSource().isEmpty()) {
+        if (req.getRegSource() != null && !req.getRegSource().isEmpty()) {
             map.put("regSource", req.getRegSource());
         }
-        if (req.getClientType()!=null && !req.getClientType().isEmpty()) {
+        if (req.getClientType() != null && !req.getClientType().isEmpty()) {
             map.put("clientType", req.getClientType());
         }
 
@@ -98,6 +98,7 @@ public class UserController extends BaseController {
 
     /**
      * 导出个人用户列表
+     *
      * @param request
      * @param response
      * @param req
@@ -138,14 +139,14 @@ public class UserController extends BaseController {
         if (StringUtil.isNotBlank(req.getState())) {
             map.put("state", req.getState());
         }
-        if (req.getRegSource()!=null && !req.getRegSource().isEmpty()) {
+        if (req.getRegSource() != null && !req.getRegSource().isEmpty()) {
             map.put("regSource", req.getRegSource());
         }
-        if (req.getClientType()!=null && !req.getClientType().isEmpty()) {
+        if (req.getClientType() != null && !req.getClientType().isEmpty()) {
             map.put("clientType", req.getClientType());
         }
         String title = "个人用户列表";
-        if(UserConstant.LOAN_GUARANT.equals(req.getLoanTag())){
+        if (UserConstant.LOAN_GUARANT.equals(req.getLoanTag())) {
             title = "担保人列表";
         }
 
@@ -160,9 +161,9 @@ public class UserController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/findCorpPageList", method=RequestMethod.POST)
+    @RequestMapping(value = "/findCorpPageList", method = RequestMethod.POST)
     public ApiResult findCorpPageList(HttpServletRequest request, HttpServletResponse response,
-                                      @RequestBody CorpInfoQueryReq req){
+                                      @RequestBody CorpInfoQueryReq req) {
 
         String loanTagStr = req.getLoanTag();
         String[] loanTags = loanTagStr.split(",");
@@ -196,10 +197,10 @@ public class UserController extends BaseController {
         if (StringUtil.isNotBlank(req.getState())) {
             map.put("state", req.getState());
         }
-        if (req.getRegSource()!=null && !req.getRegSource().isEmpty()) {
+        if (req.getRegSource() != null && !req.getRegSource().isEmpty()) {
             map.put("regSource", req.getRegSource());
         }
-        if (req.getClientType()!=null && !req.getClientType().isEmpty()) {
+        if (req.getClientType() != null && !req.getClientType().isEmpty()) {
             map.put("clientType", req.getClientType());
         }
 
@@ -213,6 +214,7 @@ public class UserController extends BaseController {
 
     /**
      * 导出企业用户列表
+     *
      * @param request
      * @param response
      * @param req
@@ -253,15 +255,15 @@ public class UserController extends BaseController {
         if (StringUtil.isNotBlank(req.getState())) {
             map.put("state", req.getState());
         }
-        if (req.getRegSource()!=null && !req.getRegSource().isEmpty()) {
+        if (req.getRegSource() != null && !req.getRegSource().isEmpty()) {
             map.put("regSource", req.getRegSource());
         }
-        if (req.getClientType()!=null && !req.getClientType().isEmpty()) {
+        if (req.getClientType() != null && !req.getClientType().isEmpty()) {
             map.put("clientType", req.getClientType());
         }
 
         String title = "企业用户列表";
-        if(UserConstant.LOAN_GUARANT.equals(req.getLoanTag())){
+        if (UserConstant.LOAN_GUARANT.equals(req.getLoanTag())) {
             title = "担保机构列表";
         }
 
@@ -277,17 +279,18 @@ public class UserController extends BaseController {
 
     /**
      * 用户详情
+     *
      * @param request
      * @param response
      * @param req
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/findDetail", method=RequestMethod.POST)
+    @RequestMapping(value = "/findDetail", method = RequestMethod.POST)
     public ApiResult findDetail(HttpServletRequest request, HttpServletResponse response,
-                                @RequestBody UserQueryReq req){
+                                @RequestBody UserQueryReq req) {
         User user = userService.selectByPrimaryKey(req.getUserId());
-        if(user == null){
+        if (user == null) {
             throw new ServiceException("用户信息查询失败");
         }
         UserDetailModel detailModel = userService.findDetailByUser(user);
@@ -296,17 +299,18 @@ public class UserController extends BaseController {
 
     /**
      * 更新用户状态10正常,20注销,30冻结
+     *
      * @param request
      * @param response
      * @param req
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/updateUserState", method=RequestMethod.POST)
+    @RequestMapping(value = "/updateUserState", method = RequestMethod.POST)
     public ApiResult updateUserState(HttpServletRequest request, HttpServletResponse response,
-                                     @RequestBody @Valid UserLockReq req){
+                                     @RequestBody @Valid UserLockReq req) {
         User user = userService.selectByPrimaryKey(req.getUserId());
-        if(user == null){
+        if (user == null) {
             throw new ServiceException("用户查询失败");
         }
         User updateUser = new User();
@@ -317,17 +321,17 @@ public class UserController extends BaseController {
     }
 
     /**
+     * @return ApiResult    返回类型
      * @Title: findUserData
      * @Description: 查询要用户数据
-     * @return ApiResult    返回类型
      */
     @ResponseBody
-    @RequestMapping(value="/findUserData", method=RequestMethod.POST)
+    @RequestMapping(value = "/findUserData", method = RequestMethod.POST)
     public ApiResult findUserData(HttpServletRequest request, HttpServletResponse response,
-                                  @RequestBody UserDataReq req){
+                                  @RequestBody UserDataReq req) {
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
 
-        Map<String,Object> map = BeanUtil.bean2Map(req);
+        Map<String, Object> map = BeanUtil.bean2Map(req);
         List<UserDataModel> list = userService.findUserData(map);
         PageInfo<UserDataModel> pageInfo = new PageInfo<>(list);
 

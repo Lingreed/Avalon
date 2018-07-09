@@ -7,9 +7,9 @@ import com.bryan.common.constant.redis.RedisConstant;
 import com.bryan.common.exception.ServiceException;
 import com.bryan.common.redis.RedisTemplateUtil;
 import com.bryan.common.utils.DateUtil;
-import com.bryan.sys.domain.SysDict;
-import com.bryan.sys.domain.SysDictType;
-import com.bryan.sys.mapper.SysDictMapper;
+import com.bryan.dao.sys.domain.SysDict;
+import com.bryan.dao.sys.domain.SysDictType;
+import com.bryan.dao.sys.mapper.SysDictMapper;
 import com.bryan.v100.service.sys.SysDictService;
 import com.bryan.v100.service.sys.SysDictTypeService;
 import org.springframework.stereotype.Service;
@@ -43,12 +43,13 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
 
     /**
      * 更新字典
+     *
      * @param dict
      */
     @Override
     public void updateSysDict(SysDict dict) {
         SysDict dbDict = super.selectByPrimaryKey(dict.getId());
-        if(dbDict == null){
+        if (dbDict == null) {
             throw new ServiceException("查询字典不存在");
         }
         //判断是否更新标识,不允许修改
@@ -56,7 +57,7 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
 
         dict.setMtime(DateUtil.getNow());
         int count = super.updateByPrimaryKeySelective(dict);
-        if(count != 1){
+        if (count != 1) {
             throw new ServiceException("更新字典错误");
         }
         // 删除缓存登录字典
@@ -65,6 +66,7 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
 
     /**
      * 保存字典项
+     *
      * @param dict
      */
     @Override
@@ -95,10 +97,10 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
      */
     @Override
     public Map<String, List<SysDict>> findInitDict() {
-        Map<String,List<SysDict>> initDictMap = RedisTemplateUtil.get(RedisConstant.CACHE_INIT_DICT);
-        if(initDictMap == null || initDictMap.isEmpty()){
+        Map<String, List<SysDict>> initDictMap = RedisTemplateUtil.get(RedisConstant.CACHE_INIT_DICT);
+        if (initDictMap == null || initDictMap.isEmpty()) {
             // 查询库,并缓存
-            Map<String,List<SysDict>> dictMap = new HashMap<>();
+            Map<String, List<SysDict>> dictMap = new HashMap<>();
 
             Example typeExample = new Example(SysDictType.class);
             typeExample.createCriteria().andEqualTo("state", GlobalConstant.STATE_ENABLE);
@@ -114,13 +116,14 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
             // 缓存结果
             RedisTemplateUtil.set(RedisConstant.CACHE_INIT_DICT, dictMap);
             return dictMap;
-        }else{
+        } else {
             return initDictMap;
         }
     }
 
     /**
      * 返回字典redis缓存
+     *
      * @return
      */
     @Override
@@ -149,6 +152,7 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
 
     /**
      * 根据字典项类型及字典code,查询字典值
+     *
      * @param typeCode
      * @param dictCode
      * @return
@@ -158,15 +162,15 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDict> implements SysD
         Example typeExample = new Example(SysDictType.class);
         typeExample.createCriteria().andEqualTo("typeCode", typeCode)
                 .andEqualTo("state", GlobalConstant.STATE_ENABLE);
-        SysDictType dictType =  sysDictTypeService.selectOneByExample(typeExample);
-        if(dictType == null){
+        SysDictType dictType = sysDictTypeService.selectOneByExample(typeExample);
+        if (dictType == null) {
             return null;
         }
         Example dictExample = new Example(SysDict.class);
         dictExample.createCriteria().andEqualTo("sysDictTypeId", dictType.getId())
                 .andEqualTo("dictCode", dictCode);
         SysDict dict = super.selectOneByExample(dictExample);
-        if(dict == null){
+        if (dict == null) {
             return null;
         }
         return dict.getDictValue();

@@ -4,7 +4,7 @@ import com.bryan.common.constant.redis.RedisConstant;
 import com.bryan.common.context.Global;
 import com.bryan.common.exception.ServiceException;
 import com.bryan.common.redis.RedisTemplateUtil;
-import com.bryan.sys.model.SysUserLoginModel;
+import com.bryan.dao.sys.model.SysUserLoginModel;
 import com.github.pagehelper.StringUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;

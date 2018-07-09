@@ -1,7 +1,7 @@
 package com.bryan.v100.service.sys;
 
 import com.bryan.common.base.BaseService;
-import com.bryan.sys.domain.SysArea;
+import com.bryan.dao.sys.domain.SysArea;
 
 import java.util.List;
 

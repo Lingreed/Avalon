@@ -1,8 +1,8 @@
 package com.bryan.v100.service.sys;
 
 import com.bryan.common.base.BaseService;
-import com.bryan.sys.domain.SysRoleMenu;
-import com.bryan.sys.model.SysMenuModel;
+import com.bryan.dao.sys.domain.SysRoleMenu;
+import com.bryan.dao.sys.model.SysMenuModel;
 
 import java.util.List;
 import java.util.Map;

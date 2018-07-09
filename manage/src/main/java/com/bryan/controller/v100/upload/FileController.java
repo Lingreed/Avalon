@@ -6,7 +6,7 @@ import com.bryan.common.constant.ApiResult;
 import com.bryan.common.utils.StringUtil;
 import com.bryan.common.utils.upload.UploadUtil;
 import com.bryan.controller.BaseController;
-import com.bryan.sys.domain.SysUser;
+import com.bryan.dao.sys.domain.SysUser;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

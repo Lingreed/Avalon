@@ -12,8 +12,8 @@ import com.bryan.common.utils.BodyReaderHttpServletRequestWrapper;
 import com.bryan.common.utils.DateUtil;
 import com.bryan.common.utils.SpringContextHolder;
 import com.bryan.common.utils.StringUtil;
-import com.bryan.sys.domain.SysLogManage;
-import com.bryan.sys.model.SysUserLoginModel;
+import com.bryan.dao.sys.domain.SysLogManage;
+import com.bryan.dao.sys.model.SysUserLoginModel;
 import com.bryan.v100.service.async.AsyncLogService;
 import com.bryan.v100.service.sys.SysRoleMenuService;
 import org.slf4j.Logger;
@@ -143,7 +143,7 @@ public class SessionFilter implements Filter {
                     userId = sessionUser.getId();
                     /*判断用户权限，超级管理员不需要权限校验*/
                     if (sessionUser.getRoleId() != Global.ADMIN_ROLE_ID) {
-	        	    	/*不需要校验的href，过滤掉*/
+                        /*不需要校验的href，过滤掉*/
                         if (!notCheckHrefSet.contains(url)) {
                             SysRoleMenuService sysRoleMenuService = SpringContextHolder.getBean(SysRoleMenuService.class);
                             boolean isAuth = sysRoleMenuService.checkRoleMenuHref(sessionUser.getRoleId(), url);

@@ -5,7 +5,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.bryan.common.constant.ApiResult;
 import com.bryan.controller.BaseController;
 import com.bryan.controller.v100.vo.sys.area.SysAreaQueryReq;
-import com.bryan.sys.domain.SysArea;
+import com.bryan.dao.sys.domain.SysArea;
 import com.bryan.v100.service.sys.SysAreaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

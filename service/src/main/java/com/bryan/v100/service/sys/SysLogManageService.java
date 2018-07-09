@@ -1,7 +1,7 @@
 package com.bryan.v100.service.sys;
 
 import com.bryan.common.base.BaseService;
-import com.bryan.sys.domain.SysLogManage;
+import com.bryan.dao.sys.domain.SysLogManage;
 
 /**
  * ClassName: SysLogManage

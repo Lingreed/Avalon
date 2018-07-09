@@ -8,9 +8,9 @@ import com.bryan.common.exception.ServiceException;
 import com.bryan.common.redis.RedisTemplateUtil;
 import com.bryan.common.utils.BeanUtil;
 import com.bryan.common.utils.DateUtil;
-import com.bryan.sys.domain.SysMenu;
-import com.bryan.sys.mapper.SysMenuMapper;
-import com.bryan.sys.model.SysMenuModel;
+import com.bryan.dao.sys.domain.SysMenu;
+import com.bryan.dao.sys.mapper.SysMenuMapper;
+import com.bryan.dao.sys.model.SysMenuModel;
 import com.bryan.v100.service.sys.SysMenuService;
 import com.bryan.v100.service.sys.SysRoleMenuService;
 import org.springframework.stereotype.Service;
@@ -102,8 +102,9 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysM
 
     /**
      * 根据父级id,查询子级菜单.
+     *
      * @param menuId 当前菜单id
-     * @param depth 递归深度,起始值0
+     * @param depth  递归深度,起始值0
      * @return
      */
     @Override
@@ -129,6 +130,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysM
     /**
      * 查询角色的菜单,拥有的角色数组
      * view code 格式
+     *
      * @param roleId
      * @return
      */
@@ -139,15 +141,16 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysM
 
     /**
      * 查询父级id数组
+     *
      * @return
      */
     @Override
     public List<Integer> findPids(Integer menuId, List<Integer> pids) {
         SysMenu currMenu = sysMenuMapper.selectByPrimaryKey(menuId);
-        if(currMenu != null && currMenu.getPid()>0){
+        if (currMenu != null && currMenu.getPid() > 0) {
             // 递归查询菜单
             pids.add(currMenu.getPid());
-            findPids(currMenu.getPid(),pids);
+            findPids(currMenu.getPid(), pids);
         }
         return pids;
     }
