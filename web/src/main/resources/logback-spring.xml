@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
-<xml>
+<!--<!DOCTYPE xml>-->
+<configuration>
     <!-- 项目名称 -->
     <property name="PROJECT" value="avalon-web"/>
     <contextName>${PROJECT}</contextName>
@@ -169,4 +169,4 @@
         <appender-ref ref="DEBUG" />
         <appender-ref ref="TRACE" />
     </logger>
-</xml>
+</configuration>
